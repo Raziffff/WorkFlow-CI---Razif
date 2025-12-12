@@ -1,0 +1,36 @@
+name: Train Drug Classification Model (Razif)
+
+on:
+  push:
+    paths:
+      - "MLProject/**"
+      - ".github/workflows/train.yaml"
+  workflow_dispatch: {}
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install \
+            numpy==2.3.3 \
+            pandas==2.3.3 \
+            scikit-learn==1.8.0 \
+            mlflow==2.19.0 \
+            joblib==1.5.2
+
+      # Jalankan MLflow Project yang sudah kamu buat
+      - name: Run MLflow project (modelling.py)
+        run: |
+          mlflow run MLProject -e main
