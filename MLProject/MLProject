@@ -1,0 +1,7 @@
+name: Drug_Classification_MSML_Razif
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    command: "python modelling.py"

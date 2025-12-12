@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/ASAH%20DICODING/MSML_MUHAMAD_RAZIF_AKBAR/Membangun_Model/mlruns/716376934191778540/73d5531351a94ab496a2dea0edacb156/artifacts
+end_time: 1765465653505
+entry_point_name: ''
+experiment_id: '716376934191778540'
+lifecycle_stage: active
+run_id: 73d5531351a94ab496a2dea0edacb156
+run_name: DecisionTree_Model
+run_uuid: 73d5531351a94ab496a2dea0edacb156
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1765465648898
+status: 4
+tags: []
+user_id: Muhanad Razif Akbar

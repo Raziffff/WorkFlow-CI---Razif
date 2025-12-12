@@ -1,0 +1,16 @@
+MODEL: RandomForest_Model
+Run ID: 1fa755c442a1447288c78869739f27a3
+Accuracy: 0.9750
+Precision: 0.9763
+Recall: 0.9750
+F1-Score: 0.9747
+Artifact URI: file:C:/ASAH DICODING/MSML_MUHAMAD_RAZIF_AKBAR/Workflow-CI/MLProject/mlruns/0/1fa755c442a1447288c78869739f27a3/artifacts
+========================================
+MODEL: DecisionTree_Model
+Run ID: 3ad7a1ec792b4fe9f738c270a6388a5
+Accuracy: 0.9750
+Precision: 0.9763
+Recall: 0.9750
+F1-Score: 0.9747
+Artifact URI: file:C:/ASAH DICODING/MSML_MUHAMAD_RAZIF_AKBAR/Workflow-CI/MLProject/mlruns/0/3ad7a1ec792b4fe9f738c270a6388a5/artifacts
+========================================

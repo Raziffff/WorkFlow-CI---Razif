@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/ASAH%20DICODING/MSML_MUHAMAD_RAZIF_AKBAR/Membangun_Model/mlruns/716376934191778540/99afad0bd38a43c2be0ef8fe47c99447/artifacts
+end_time: 1765467689934
+entry_point_name: ''
+experiment_id: '716376934191778540'
+lifecycle_stage: active
+run_id: 99afad0bd38a43c2be0ef8fe47c99447
+run_name: RandomForest_Model
+run_uuid: 99afad0bd38a43c2be0ef8fe47c99447
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1765467686410
+status: 3
+tags: []
+user_id: Raziffff

@@ -1,0 +1,27 @@
+artifact_path: model
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.0
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+mlflow_version: 2.19.0
+model_size_bytes: 404239
+model_uuid: 60d435ac1b6c4e5e9ff74a786ecc750f
+run_id: 99afad0bd38a43c2be0ef8fe47c99447
+signature:
+  inputs: '[{"type": "long", "name": "Age", "required": true}, {"type": "long", "name":
+    "Sex", "required": true}, {"type": "long", "name": "BP", "required": true}, {"type":
+    "long", "name": "Cholesterol", "required": true}, {"type": "double", "name": "Na_to_K",
+    "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
+  params: null
+utc_time_created: '2025-12-11 15:41:26.938918'

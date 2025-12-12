@@ -1,0 +1,10 @@
+digest: 481e78cb
+name: dataset
+profile: '{"num_rows": 40, "num_elements": 200}'
+schema: '{"mlflow_colspec": [{"type": "long", "name": "Age", "required": true}, {"type":
+  "long", "name": "Sex", "required": true}, {"type": "long", "name": "BP", "required":
+  true}, {"type": "long", "name": "Cholesterol", "required": true}, {"type": "double",
+  "name": "Na_to_K", "required": true}]}'
+source: '{"tags": {"mlflow.user": "Muhanad Razif Akbar", "mlflow.source.name": "modelling.py",
+  "mlflow.source.type": "LOCAL"}}'
+source_type: code
