@@ -23,21 +23,17 @@ warnings.filterwarnings("ignore")
 # CONFIG MLFLOW (DAGSHUB)
 # =====================================================================
 
-# URL tracking DagsHub (repo PROJEK_MSML)
-DAGSHUB_URI = "https://dagshub.com/Raziffff/PROJEK_MSML.mlflow"
-DAGSHUB_USERNAME = "Raziffff"
-DAGSHUB_TOKEN = "209144f1e04f3f4cbf927e9c0e29cc1587f607a7"  # jgn di-commit ke GitHub
-
-# Set environment variable untuk MLflow (dipakai oleh client)
-os.environ["MLFLOW_TRACKING_USERNAME"] = DAGSHUB_USERNAME
-os.environ["MLFLOW_TRACKING_PASSWORD"] = DAGSHUB_TOKEN
-
 EXPERIMENT_NAME = "Drug_Classification_MSML_Razif"
 
-# Set tracking ke DagsHub
-mlflow.set_experiment(EXPERIMENT_NAME)
+# Ambil tracking URI dari environment (GitHub Actions / lokal)
+TRACKING_URI = os.environ.get("MLFLOW_TRACKING_URI")
 
-BASE_DIR = os.path.dirname(__file__)
+# Kalau tidak ada, fallback ke tracking lokal (file sqlite)
+if not TRACKING_URI:
+    TRACKING_URI = "sqlite:///mlflow.db"
+
+mlflow.set_tracking_uri(TRACKING_URI)
+mlflow.set_experiment(EXPERIMENT_NAME)
 
 # =====================================================================
 # LOAD DATA
