@@ -19,22 +19,21 @@ import mlflow.sklearn
 
 warnings.filterwarnings("ignore")
 
+# === IMPORTANT: base directory untuk file CSV & model ===
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # =====================================================================
 # CONFIG MLFLOW (LOCAL DEFAULT + OPSIONAL DAGSHUB)
 # =====================================================================
-
-# Baca env kalau memang ada (misal di lokal atau dari GitHub Secrets)
 MLFLOW_TRACKING_URI = os.environ.get("MLFLOW_TRACKING_URI")
 MLFLOW_USERNAME = os.environ.get("MLFLOW_TRACKING_USERNAME")
 MLFLOW_PASSWORD = os.environ.get("MLFLOW_TRACKING_PASSWORD")
 
 if MLFLOW_TRACKING_URI and MLFLOW_USERNAME and MLFLOW_PASSWORD:
-    # Kalau 3-3 nya terisi → pakai remote (misal DagsHub)
     mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
     print("✓ Using REMOTE MLflow tracking server")
     print(f"  URI : {MLFLOW_TRACKING_URI}")
 else:
-    # Kalau belum lengkap → pakai lokal ./mlruns
     LOCAL_URI = "file:./mlruns"
     mlflow.set_tracking_uri(LOCAL_URI)
     print("⚠️ Remote MLflow not fully configured, using LOCAL tracking")
