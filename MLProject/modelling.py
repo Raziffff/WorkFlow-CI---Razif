@@ -4,6 +4,7 @@ Modelling Script - Drug Classification (Razif)
 Kriteria 2: Membangun Model Machine Learning (Basic Level)
 Dataset: drug200 (hasil preprocessing: X_train/X_test/y_train/y_test)
 """
+
 import os
 import warnings
 import joblib
@@ -19,29 +20,17 @@ import mlflow.sklearn
 warnings.filterwarnings("ignore")
 
 # =====================================================================
-# CONFIG MLFLOW (REMOTE via ENV, KALAU LENGKAP; KALAU TIDAK → LOCAL)
+# CONFIG MLFLOW (LOCAL ONLY, TANPA DAGSHUB)
 # =====================================================================
 
-# Sangat penting untuk file CSV dan model.pkl
+# Folder kerja (dipakai untuk CSV & model.pkl)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "").strip()
-TRACKING_USERNAME = os.getenv("MLFLOW_TRACKING_USERNAME", "").strip()
-TRACKING_PASSWORD = os.getenv("MLFLOW_TRACKING_PASSWORD", "").strip()
-
-if TRACKING_URI and TRACKING_USERNAME and TRACKING_PASSWORD:
-    # Semua secret lengkap → pakai remote (misal DagsHub)
-    os.environ["MLFLOW_TRACKING_USERNAME"] = TRACKING_USERNAME
-    os.environ["MLFLOW_TRACKING_PASSWORD"] = TRACKING_PASSWORD
-    mlflow.set_tracking_uri(TRACKING_URI)
-    print("✅ Remote MLflow tracking dipakai:")
-    print("   URI :", TRACKING_URI)
-else:
-    # Kalau salah satu kosong → JANGAN pakai remote, langsung LOCAL
-    local_uri = "file:./mlruns"
-    mlflow.set_tracking_uri(local_uri)
-    print("⚠️ Remote MLflow belum lengkap, pakai LOCAL tracking:")
-    print("   URI :", local_uri)
+# Tracking MLflow lokal, akan membuat folder mlruns di MLProject
+MLFLOW_URI = "file:./mlruns"
+mlflow.set_tracking_uri(MLFLOW_URI)
+print("✅ MLflow lokal digunakan")
+print("   URI :", MLFLOW_URI)
 
 EXPERIMENT_NAME = "Drug_Classification_MSML_Razif"
 mlflow.set_experiment(EXPERIMENT_NAME)
