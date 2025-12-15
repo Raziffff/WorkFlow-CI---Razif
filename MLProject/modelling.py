@@ -26,15 +26,14 @@ warnings.filterwarnings("ignore")
 # Folder kerja (dipakai untuk CSV & model.pkl)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Tracking MLflow lokal, akan membuat folder mlruns di MLProject
+# Pakai tracking lokal → MLflow akan bikin folder `mlruns` di folder MLProject
 MLFLOW_URI = "file:./mlruns"
 mlflow.set_tracking_uri(MLFLOW_URI)
 print("✅ MLflow lokal digunakan")
 print("   URI :", MLFLOW_URI)
 
-EXPERIMENT_NAME = "Drug_Classification_MSML_Razif"
-mlflow.set_experiment(EXPERIMENT_NAME)
-
+# EXPERIMENT_NAME = "Drug_Classification_MSML_Razif"
+# mlflow.set_experiment(EXPERIMENT_NAME)
 
 # =====================================================================
 # LOAD DATA
