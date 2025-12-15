@@ -15,23 +15,27 @@ jobs:
 
     steps:
       - name: 📥 Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🐍 Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: '3.10'
 
       - name: 📦 Install Dependencies
-        working-directory: MLProject
         run: |
           python -m pip install --upgrade pip
           pip install pandas numpy scikit-learn mlflow joblib
 
-      - name: 🤖 Train Model with MLflow
+      - name: 🤖 Train Model with MLflow Project
         working-directory: MLProject
+        # Env di bawah OPSIONAL: terisi kalau kamu set GitHub Secrets
+        env:
+          MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+          MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
+          MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
         run: |
-          python modelling.py
+          mlflow run . -e main --env-manager=local
 
       - name: 📊 Display Run Info
         working-directory: MLProject
