@@ -4,7 +4,6 @@ Modelling Script - Drug Classification (Razif)
 Kriteria 2: Membangun Model Machine Learning (Basic Level)
 Dataset: drug200 (hasil preprocessing: X_train/X_test/y_train/y_test)
 """
-
 import os
 import warnings
 import joblib
@@ -12,12 +11,7 @@ import pandas as pd
 import numpy as np
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import (
-    accuracy_score,
-    precision_score,
-    recall_score,
-    f1_score,
-)
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 import mlflow
 import mlflow.sklearn
@@ -25,26 +19,25 @@ import mlflow.sklearn
 warnings.filterwarnings("ignore")
 
 # =====================================================================
-# CONFIG MLFLOW (REMOTE via ENV, KALAU ADA; KALAU TIDAK → LOCAL)
+# CONFIG MLFLOW (REMOTE via ENV, KALAU LENGKAP; KALAU TIDAK → LOCAL)
 # =====================================================================
+
+# Sangat penting untuk file CSV dan model.pkl
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "").strip()
 TRACKING_USERNAME = os.getenv("MLFLOW_TRACKING_USERNAME", "").strip()
 TRACKING_PASSWORD = os.getenv("MLFLOW_TRACKING_PASSWORD", "").strip()
 
-if TRACKING_URI:
-    # Pakai remote MLflow (misalnya DagsHub) kalau URI ada
+if TRACKING_URI and TRACKING_USERNAME and TRACKING_PASSWORD:
+    # Semua secret lengkap → pakai remote (misal DagsHub)
+    os.environ["MLFLOW_TRACKING_USERNAME"] = TRACKING_USERNAME
+    os.environ["MLFLOW_TRACKING_PASSWORD"] = TRACKING_PASSWORD
     mlflow.set_tracking_uri(TRACKING_URI)
-
-    # Kalau username & password (token) juga ada, set ke env
-    if TRACKING_USERNAME and TRACKING_PASSWORD:
-        os.environ["MLFLOW_TRACKING_USERNAME"] = TRACKING_USERNAME
-        os.environ["MLFLOW_TRACKING_PASSWORD"] = TRACKING_PASSWORD
-
     print("✅ Remote MLflow tracking dipakai:")
     print("   URI :", TRACKING_URI)
 else:
-    # Fallback: pakai tracking lokal di folder mlruns
+    # Kalau salah satu kosong → JANGAN pakai remote, langsung LOCAL
     local_uri = "file:./mlruns"
     mlflow.set_tracking_uri(local_uri)
     print("⚠️ Remote MLflow belum lengkap, pakai LOCAL tracking:")
@@ -53,8 +46,6 @@ else:
 EXPERIMENT_NAME = "Drug_Classification_MSML_Razif"
 mlflow.set_experiment(EXPERIMENT_NAME)
 
-# sangat penting untuk load_data() (lokasi CSV & model.pkl)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # =====================================================================
 # LOAD DATA
