@@ -35,11 +35,11 @@ jobs:
       - name: 📊 Display Run Info
         working-directory: MLProject
         run: |
-          if [ -f run_info.txt ]; then
+          if [ -f runinfo.txt ]; then
             echo "=== Model Training Results ==="
-            cat run_info.txt
-          else:
-            echo "⚠️ run_info.txt not found"
+            cat runinfo.txt
+          else
+            echo "⚠️ runinfo.txt not found"
           fi
 
       - name: ✅ Training Complete
