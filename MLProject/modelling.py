@@ -26,12 +26,13 @@ warnings.filterwarnings("ignore")
 # Folder kerja (dipakai untuk CSV & model.pkl)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Pakai tracking lokal → MLflow akan bikin folder `mlruns` di folder MLProject
+# Tracking MLflow lokal, akan membuat folder mlruns di MLProject
 MLFLOW_URI = "file:./mlruns"
 mlflow.set_tracking_uri(MLFLOW_URI)
 print("✅ MLflow lokal digunakan")
 print("   URI :", MLFLOW_URI)
 
+# ❌ HAPUS atau KOMENTARI kalau masih ada baris berikut:
 # EXPERIMENT_NAME = "Drug_Classification_MSML_Razif"
 # mlflow.set_experiment(EXPERIMENT_NAME)
 
@@ -136,7 +137,9 @@ def train_model(X_train, X_test, y_train, y_test, model_name="DecisionTree"):
 
         print("\n✓ Model logged to MLflow!")
         print(f"✓ Run name  : {model_name}_Model")
-        print(f"✓ Experiment: {EXPERIMENT_NAME}")
+        # Baris di bawah dihapus karena variabelnya sudah tidak ada
+        # print(f"✓ Experiment: {EXPERIMENT_NAME}")
+
 
         return model
 
